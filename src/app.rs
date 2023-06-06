@@ -424,8 +424,7 @@ impl CalcedData {
 impl App {
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
         if let Some(storage) = cc.storage {
-            let mut result: App =
-                eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
+            let mut result: App = eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
             result.init();
             return result;
         }
