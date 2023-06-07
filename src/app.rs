@@ -79,7 +79,7 @@ fn approximate_distribution_by_polynom(
     let mut t = vec![0f64; n + 1];
     let minv = sorted_values[0] - border;
     let maxv = sorted_values.last().unwrap() + border;
-    let seg_count = ((sorted_values.len() * seg_mult) as f64).sqrt() as i32;
+    let seg_count = ((sorted_values.len() * seg_mult) as f64).sqrt() as i64;
     let step = (maxv - minv) / seg_count as f64;
 
     let mut apos = 0;
@@ -263,6 +263,10 @@ impl PlotDataAndSettings {
                 .collect::<Result<Vec<_>, _>>()?,
             ..CalcedData::default()
         };
+
+        if result.data_parsed.is_empty() {
+            return Err(String::new());
+        }
 
         sort_f64(&mut result.data_parsed);
 
